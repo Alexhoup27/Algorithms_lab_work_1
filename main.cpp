@@ -188,7 +188,7 @@ class DataGenerator{
         auto time_data = generate_some_random_digits(n);
         auto comb_data_alpha = combinations(2, 26);
         auto comb_data_digits = combinations(3, 10);
-        auto cost_data = itamaraca(n, 10000, 490, 13, 65);
+        auto cost_data = itamaraca(n, 1000000, 490, 13, 65);
         auto day_of_week_data = generate_days_of_weeks(n);
         std::vector<std::string> result;
         for (int ind = 0; ind < n; ind ++){
