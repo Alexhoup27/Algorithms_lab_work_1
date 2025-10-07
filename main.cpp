@@ -81,15 +81,16 @@ class DataGenerator{
         }
 
         std::vector<int> itamaraca(int n, int N,int S0,int S1,int S2){
-            const int X=4;
+            const double X=1.97;
             std::vector<int> to_return;
             for (int i =0; i <n; i++){
-                int p = std::abs(S2 - S1 + S1 - S0);
-                int result = std::abs(N - (p * std::sqrt(X)));
+                int p = std::abs(S2 - S0);
+                // int result = std::abs(N - (p * std::sqrt(X)));
+                int result = std::round(std::abs(N - (p * X)));
                 to_return.push_back(result);
                 S0 = S1;
                 S1 = S2;
-                S2 = p;
+                S2 = result;
             }
             return to_return;
         }  
@@ -122,7 +123,7 @@ class DataGenerator{
                 result.push_back(0);
                 helper.push_back(j + 1);
             }
-            int i;
+            int i=0;
             while (i < n + 1){
                 to_return.push_back(reversed(slice(result, 1, n + 1)));
                 i = helper[0];
@@ -139,7 +140,7 @@ class DataGenerator{
             std::vector<std::vector<int>> to_return; 
             std::random_device rd;
             std::mt19937 gen(rd());
-            std::uniform_int_distribution<> distr_hours(23, 23);
+            std::uniform_int_distribution<> distr_hours(1, 23);
             std::uniform_int_distribution<> distr_minutes(0, 59);
             for (int i = 0; i < n; i ++){
                 to_return.push_back({distr_hours(gen),
@@ -188,7 +189,7 @@ class DataGenerator{
         auto time_data = generate_some_random_digits(n);
         auto comb_data_alpha = combinations(2, 26);
         auto comb_data_digits = combinations(3, 10);
-        auto cost_data = itamaraca(n, 1000000, 490, 13, 65);
+        auto cost_data = itamaraca(n, 1000000, 8777, 11000, 80000);
         auto day_of_week_data = generate_days_of_weeks(n);
         std::vector<std::string> result;
         for (int ind = 0; ind < n; ind ++){
